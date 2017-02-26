@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using SpecFlow1.Models;
 
 namespace SpecFlow1.Steps
 {
@@ -8,35 +9,38 @@ namespace SpecFlow1.Steps
     public class SpecFlowFeature1Steps {
         [Given(@"I have entered (.*) into the calculator")]
         public void GivenIHaveEnteredIntoTheCalculator(int p0) {
-            ScenarioContext.Current["primulNumar"] = p0;
-        }
-
-        [Given(@"I have entered (.*) into the calculator2")]
-        public void GivenIHaveEnteredIntoTheCalculator2(int p1) {
-            ScenarioContext.Current["alDoileaNumar"] = p1;
+            Calculator.numbers.Add(p0);
         }
 
         [When(@"I press (.*)")]
         public void WhenIPress(string butonApasat) {
-            calculeaza(butonApasat);
+            Calculator.operația = butonApasat;
+            calculeaza();
         }
 
-        private void calculeaza(string butonApasat)
-        {
-            int p0 = int.Parse(ScenarioContext.Current["primulNumar"].ToString());
-            int p1 = int.Parse(ScenarioContext.Current["alDoileaNumar"].ToString());
-            if (butonApasat == "add")
-                ScenarioContext.Current["rezultat"] = p0 + p1;
-            else if (butonApasat == "minus")
-                ScenarioContext.Current["rezultat"] = p0 - p1;
-            else
-                throw new NotSupportedException();
+        private void calculeaza() {
+            int rezultat = Calculator.numbers[0];
+            for (int i=1; i<Calculator.numbers.Count; i++) {
+                int item = Calculator.numbers[i];
+                if (Calculator.operația == "add")
+                    rezultat += item;
+                else if (Calculator.operația == "minus")
+                    rezultat -= item;
+                else
+                    throw new NotSupportedException();
+            }
+            ScenarioContext.Current["rezultat"] = rezultat;
         }
         
         [Then(@"the result should be (.*) on the screen")]
         public void ThenTheResultShouldBeOnTheScreen(int p0) {
             int rezultat = int.Parse(ScenarioContext.Current["rezultat"].ToString());
-            Assert.AreEqual(rezultat, p0, "Valorile nu sunt egale.");
+            Assert.AreEqual(rezultat, p0, "Operația \"" + Calculator.operația + "\" nu a reușit.");
+        }
+
+        [AfterScenario]
+        public void AfterScenario() {
+            Calculator.numbers.Clear();
         }
     }
 }
