@@ -23,3 +23,15 @@ Scenario: Adunare și scădere
 	Then the result should be -120 on the screen
 	When I press minus
 	Then the result should be -20 on the screen
+
+Scenario Outline: parametri
+    Given I have entered <a> into the calculator
+    And I have entered <b> into the calculator
+    When I press <operația>
+    Then the result should be <rezultat> on the screen
+
+    Examples: 
+    | a | b  | operația | rezultat |
+    | 3 | 5  | add      | 8        |
+    | 7 | 4  | minus    | 3        |
+    | 9 | -3 | add      | 6        |

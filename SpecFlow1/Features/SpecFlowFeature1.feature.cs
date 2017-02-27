@@ -126,6 +126,28 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("parametri")]
+        [NUnit.Framework.TestCaseAttribute("3", "5", "add", "8", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("7", "4", "minus", "3", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("9", "-3", "add", "6", new string[0])]
+        public virtual void Parametri(string a, string b, string operația, string rezultat, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("parametri", exampleTags);
+#line 27
+this.ScenarioSetup(scenarioInfo);
+#line 28
+    testRunner.Given(string.Format("I have entered {0} into the calculator", a), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 29
+    testRunner.And(string.Format("I have entered {0} into the calculator", b), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 30
+    testRunner.When(string.Format("I press {0}", operația), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 31
+    testRunner.Then(string.Format("the result should be {0} on the screen", rezultat), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
