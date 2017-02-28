@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using SpecFlow1.Models;
+using TechTalk.SpecFlow.Assist;
 
 namespace SpecFlow1.Steps
 {
@@ -36,6 +37,24 @@ namespace SpecFlow1.Steps
         public void ThenTheResultShouldBeOnTheScreen(int p0) {
             int rezultat = int.Parse(ScenarioContext.Current["rezultat"].ToString());
             Assert.AreEqual(rezultat, p0, "Operația \"" + Calculator.operația + "\" nu a reușit.");
+        }
+
+        [Given(@"linie")]
+        public void GivenLinie(Table table) {
+            var det = table.CreateSet<test>();
+            foreach (var item in det)
+                afișează(item);
+        }
+
+        [Given(@"coloană")]
+        public void GivenColoana(Table table) {
+            afișează(table.CreateInstance<test>());
+        }
+
+        private static void afișează(test det) {
+            Console.WriteLine(det.Nume);
+            Console.WriteLine(det.Prenume);
+            Console.WriteLine(det.E_mail);
         }
 
         [AfterScenario]

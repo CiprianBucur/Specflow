@@ -138,13 +138,65 @@ this.ScenarioSetup(scenarioInfo);
 #line 27
 this.ScenarioSetup(scenarioInfo);
 #line 28
-    testRunner.Given(string.Format("I have entered {0} into the calculator", a), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I have entered {0} into the calculator", a), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 29
-    testRunner.And(string.Format("I have entered {0} into the calculator", b), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I have entered {0} into the calculator", b), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 30
-    testRunner.When(string.Format("I press {0}", operația), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I press {0}", operația), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 31
-    testRunner.Then(string.Format("the result should be {0} on the screen", rezultat), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("the result should be {0} on the screen", rezultat), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Afișare pe linie")]
+        public virtual void AfișarePeLinie()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Afișare pe linie", ((string[])(null)));
+#line 39
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Nume",
+                        "Prenume",
+                        "E-mail"});
+            table1.AddRow(new string[] {
+                        "\"Popescu\"",
+                        "\"Ion\"",
+                        "\"popescu@e-mail.com\""});
+            table1.AddRow(new string[] {
+                        "\"Dan\"",
+                        "\"Vasile\"",
+                        "\"dan@e-mail.com\""});
+#line 40
+ testRunner.Given("linie", ((string)(null)), table1, "Given ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Afișare pe coloană")]
+        public virtual void AfișarePeColoana()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Afișare pe coloană", ((string[])(null)));
+#line 45
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Câmp",
+                        "Valoare"});
+            table2.AddRow(new string[] {
+                        "Nume",
+                        "\"Gigel\""});
+            table2.AddRow(new string[] {
+                        "Prenume",
+                        "\"Nicu\""});
+            table2.AddRow(new string[] {
+                        "E-mail",
+                        "\"nicu@e-mail.com\""});
+#line 46
+ testRunner.Given("coloană", ((string)(null)), table2, "Given ");
 #line hidden
             this.ScenarioCleanup();
         }
